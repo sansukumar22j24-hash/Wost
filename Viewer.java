@@ -1,32 +1,12 @@
-package MovieTicketBookingSystem;
+package AAAAA;
 
-public class Viewer {
-    //• Knows: (from INPUT via Scanner)
-    //  - numberOfSeats
-    //  - screenType (GOLD / SILVER)
-    //  - wantsSnacks (YES / NO)
-    //  - snackQuantity
-    private int numberOfSeats;
-    private String screenType;
-    private String wantSnacks;
-    private int snackQuality;
-    //Unknown: bookingId, ticketPrice, snackPrice, totalBill
-private int bookId;
-private int  ticketPrice;
-private int snackPrice;
-private int totalBill;
-private GoldScreen goldScreen;
-private SilverScreen silverScreen;
-public Viewer(){}
-    public Viewer(int snackQuality){
-        this.snackQuality=snackQuality;
-    }
-    public Viewer(int numberOfSeats,String screenType,String wantSnacks,int snackQuality){
-        this.numberOfSeats=numberOfSeats;
-        this.screenType=screenType;
-        this.wantSnacks=wantSnacks;
-        this.snackQuality=snackQuality;
-    }
+public class Viewer implements ViewerInterface {
+private int numberOfSeats;
+private String screenType;
+private String wantSnacks;
+private int snackQuality;
+private Screen [] screen= new Screen[2];
+
 
     public int getNumberOfSeats() {
         return numberOfSeats;
@@ -56,58 +36,23 @@ public Viewer(){}
         return snackQuality;
     }
 
-
     public void setSnackQuality(int snackQuality) {
         this.snackQuality = snackQuality;
     }
 
-    public int getBookId() {
-        return bookId;
+
+    public Viewer(){
+
     }
 
-    public void setBookId(int bookId) {
-        this.bookId = bookId;
+    public Screen[] getScreen() {
+        return screen;
     }
 
-    public int getTicketPrice() {
-        return ticketPrice;
+    public void setScreen(Screen[] screen) {
+        this.screen = screen;
     }
 
-    public void setTicketPrice(int ticketPrice) {
-        this.ticketPrice = ticketPrice;
-    }
-
-    public int getSnackPrice() {
-        return snackPrice;
-    }
-
-    public void setSnackPrice(int snackPrice) {
-        this.snackPrice = snackPrice;
-    }
-
-    public int getTotalBill() {
-        return totalBill;
-    }
-
-    public void setTotalBill(int totalBill) {
-        this.totalBill = totalBill;
-    }
-
-    public GoldScreen getGoldScreen() {
-        return goldScreen;
-    }
-
-    public void setGoldScreen(GoldScreen goldScreen) {
-        this.goldScreen = goldScreen;
-    }
-
-    public SilverScreen getSilverScreen() {
-        return silverScreen;
-    }
-
-    public void setSilverScreen(SilverScreen silverScreen) {
-        this.silverScreen = silverScreen;
-    }
-
-
+//    public int getNoOfSeats() {
+//    }
 }
