@@ -1,12 +1,12 @@
-package AAAAA;
+package MovieTicket;
 
-
-public abstract class Screen implements ScreenInterface {
+public abstract class Screen implements ScreenInterface  {
     private int bookingId;
-    private int ticketPrice;
+    private  int ticketPrice;
     private int snackPrice;
     private int totalBill;
-    private Viewer viewer;
+    private  int convienince;
+    private ViewerInterface viewer;
 
     public int getBookingId() {
         return bookingId;
@@ -39,42 +39,53 @@ public abstract class Screen implements ScreenInterface {
     public void setTotalBill(int totalBill) {
         this.totalBill = totalBill;
     }
-    public void calculateTicketPrice() {
-        this.ticketPrice = this.viewer.getNoOfSeats() * this.ticketPrice;
-        System.out.println(this.ticketPrice);
+
+    public int getConvienince() {
+        return convienince;
     }
 
-    public void calculateSnackPrice(){
-        if(this.viewer.getWantSnacks()=="YES") {
-            this.snackPrice = this.viewer.getSnackQuality()*this.snackPrice;
-            System.out.println("Snack Price: " +this.snackPrice);
-
-        }
-        else{
-            snackPrice=0;
-            System.out.println("Snack Price: " + snackPrice);
-        }
-    }
-    public void generateBill(){
-        this.totalBill=this.ticketPrice+this.snackPrice+100 ;
-        System.out.println("Total Bill: " + totalBill);
-    }
-    public void  applyDiscount(){
-        if(this.viewer.getNumberOfSeats()>=4){
-            int Discount=this.totalBill*10/100;
-            this.totalBill=this.totalBill-Discount;
-            System.out.println("Discount Applied");
-            System.out.println(this.totalBill);
-        }
-        else{
-            System.out.println("No Discount");
-        }
+    public void setConvienince(int convienince) {
+        this.convienince = convienince;
     }
 
-    public void setViewer(Viewer viewer) {
+    public ViewerInterface getViewer() {
+        return viewer;
+    }
+
+    public void setViewer(ViewerInterface viewer) {
         this.viewer = viewer;
     }
-    public Viewer getViewer(){
-      return viewer;
-}
+
+    public  void calculateTicketPrice(){
+        int ticketprice =this.getViewer().getNumberOfSeats()*500;
+        this.setTicketPrice(ticketprice);
+        System.out.println("ticket Price: "+this.getTicketPrice());
+    }
+    public void  calculateSnackPrice(){
+        if(this.getViewer().getWantSnacks().equals("YES")){
+            System.out.println( "Snack Price: " + getSnackPrice());
+            int snackPrice = getViewer().getSnackQuality()*this.getConvienince();
+            this.setSnackPrice(snackPrice);
+            System.out.println("Snack Price: "+this.getSnackPrice());
+
+
+        }
+
+    }
+    public void  generateBill(){
+        int totalBill=getTicketPrice()+getSnackPrice()+getConvienince();
+        setTotalBill(totalBill);
+        System.out.println( "Total Bill: " +getTotalBill());
+    }
+    public void applyDiscount(){
+        if(getViewer().getNumberOfSeats()>=4){
+            int discountAmount= this.getTotalBill()*10/100;
+            System.out.println("Discount Applied: " + discountAmount);
+        }
+        else{
+            int discountAmount=0;
+            System.out.println("Discount Applied: " + discountAmount);
+        }
+    }
+
 }
